@@ -7,6 +7,7 @@ class Blogs(Base):
 
     id = Column(Integer, primary_key=True)
     title = Column(String(100))
+    author = Column(Integer, ForeignKey("users.id"))
 
 
 class Posts(Base):
@@ -33,7 +34,7 @@ class Users(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(100))
     hashed_password = Column(String())
-    is_superuser = Column(Boolean())
+    is_superuser = Column(Boolean(), default=False)
 
 class Subscribers(Base):
     __tablename__ = "subscribers"
