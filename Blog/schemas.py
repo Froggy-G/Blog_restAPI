@@ -3,11 +3,15 @@ from pydantic import BaseModel
 
 class BlogsBase(BaseModel):
     title: str
-    author: int
+    # author: int
+
+    class Config:
+        orm_mode = True
 
 
 class BlogsList(BlogsBase):
     id: int
 
-    class Config:
-        orm_mode = True
+
+class BlogCreate(BlogsBase):
+    pass
