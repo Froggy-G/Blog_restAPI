@@ -1,13 +1,13 @@
 from sqlalchemy.orm import Session
-from .models import Blogs
+from .models import Blog
 from .schemas import BlogCreate
 
 
 def get_blogs_list(db: Session):
-    return db.query(Blogs).all()
+    return db.query(Blog).all()
 
 def create_blog(db: Session, item: BlogCreate):
-    blog = Blogs(**item.dict())
+    blog = Blog(**item.dict())
     db.add(blog)
     db.commit()
     db.refresh(blog)
