@@ -1,14 +1,12 @@
-from sqlalchemy.orm import Session
 from .models import Blog
+from .models import blogs
 from .schemas import BlogCreate
+from Core.db import database
 
 
-def get_blogs_list(db: Session):
-    return db.query(Blog).all()
+async def get_blog_list():
+    return await database.fetch_all(query=blogs.select())
 
-def create_blog(db: Session, item: BlogCreate):
-    blog = Blog(**item.dict())
-    db.add(blog)
-    db.commit()
-    db.refresh(blog)
-    return blog
+async def create_blog(item: BlogCreate):
+    blog = blogs.insert().values(**item.dict())
+    return await database.execute(blog)

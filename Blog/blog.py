@@ -9,9 +9,9 @@ router = APIRouter()
 
 
 @router.get("/", response_model=List[BlogsList])
-def blogs_list(db: Session = Depends(get_db)):                            
-    return service.get_blogs_list(db)
+async def blog_list():                            
+    return await service.get_blog_list()
 
 @router.post("/")
-def blog_create(item: BlogCreate, db: Session = Depends(get_db)):                            
-    return service.create_blog(db, item)
+async def blog_create(item: BlogCreate):                            
+    return await service.create_blog(item)
