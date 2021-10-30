@@ -7,16 +7,15 @@ class BlogsBase(BaseModel):
     title: str
     author: UUID4
 
-    class Config:
-        orm_mode = True
-
-
 class BlogsList(BlogsBase):
     id: int
 
 
 class BlogCreate(BlogsBase):
-    pass
+
+    class Config:
+        orm_mode = True
+
 
 
 # ---Users
